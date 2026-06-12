@@ -23,15 +23,15 @@ function moveNoButton() {
 
     noAttempts++;
 
-    if (noAttempts === 5) {
+    if (noAttempts === 10) {
         noBtn.innerText = "Still trying? 🙂";
     }
 
-    if (noAttempts === 10) {
+    if (noAttempts === 20) {
         noBtn.innerText = "That's not an option";
     }
 
-    if (noAttempts === 15) {
+    if (noAttempts === 40) {
         noBtn.innerText = "Just press Yes ❤️";
     }
 }
