@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️ Date Invite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div id="step1" class="card">
+        <h1>🌸 Wanna go on an adventure? 🌸</h1>
+
+        <div class="buttons">
+            <button id="yesBtn">Yes ❤️</button>
+            <button id="noBtn">No 🙈</button>
+        </div>
+    </div>
+
+    <div id="step2" class="card hidden">
+        <h1>😳 Wait, you actually said yes?</h1>
+        <p>I was ready for you to say no.</p>
+
+        <button id="continueBtn">Continue ➜</button>
+    </div>
+
+    <div id="step3" class="card hidden">
+        <h1>📅 When are you free?</h1>
+
+        <input type="date" id="date">
+        <input type="time" id="time">
+
+        <button id="dateBtn">Continue ➜</button>
+    </div>
+
+    <div id="step4" class="card hidden">
+        <h1>✨ What should we do?</h1>
+
+        <div class="food-grid">
+            <button class="food">🍕 Pizza</button>
+            <button class="food">🍣 Sushi</button>
+            <button class="food">🍔 Burger</button>
+            <button class="food">☕ Coffee</button>
+            <button class="food">🎬 Movie</button>
+            <button class="food">🚶 Walk</button>
+        </div>
+
+        <input
+            type="text"
+            id="customFood"
+            placeholder="Or write your own idea..."
+        >
+
+        <textarea
+            id="comment"
+            placeholder="Anything you'd like to add?"
+        ></textarea>
+
+        <button id="customBtn">Confirm ❤️</button>
+    </div>
+
+    <div id="step5" class="card hidden">
+        <h1>❤️ Request accepted</h1>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
