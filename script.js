@@ -69,14 +69,55 @@ document.getElementById("continueBtn").onclick = () => {
     step3.classList.remove("hidden");
 };
 
-document.getElementById("dateBtn").onclick = () => {
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("time").value;
+const dateInput = document.getElementById("date");
+const timeInput = document.getElementById("time");
+const timeHint = document.getElementById("timeHint");
 
-    if (!date || !time) {
-        alert("Please choose date and time");
-        return;
+function isWeekday(dateValue) {
+    if (!dateValue) return false;
+    // Parse as a local calendar date so the selected day is timezone independent.
+    const [year, month, day] = dateValue.split("-").map(Number);
+    const weekday = new Date(year, month - 1, day).getDay();
+    return weekday >= 1 && weekday <= 5;
+}
+
+function updateTimeAvailability() {
+    const weekday = isWeekday(dateInput.value);
+    if (weekday) {
+        timeInput.min = "20:00";
+        timeInput.max = "22:00";
+    } else {
+        timeInput.removeAttribute("min");
+        timeInput.removeAttribute("max");
     }
+    timeHint.textContent = !dateInput.value
+        ? "Choose a date to see available times."
+        : weekday ? "Monday to Friday: 20:00 to 22:00."
+        : "Weekend: choose any time.";
+    timeInput.setCustomValidity(
+        weekday && timeInput.value && (timeInput.value < "20:00" || timeInput.value > "22:00")
+            ? "On weekdays, please choose a time from 20:00 to 22:00."
+            : ""
+    );
+}
+
+function validateDateTime() {
+    updateTimeAvailability();
+    if (!dateInput.value || !timeInput.value) {
+        alert("Please choose date and time");
+        return false;
+    }
+    return timeInput.reportValidity();
+}
+
+dateInput.addEventListener("input", updateTimeAvailability);
+dateInput.addEventListener("change", updateTimeAvailability);
+timeInput.addEventListener("input", updateTimeAvailability);
+timeInput.addEventListener("change", updateTimeAvailability);
+updateTimeAvailability();
+
+document.getElementById("dateBtn").onclick = () => {
+    if (!validateDateTime()) return;
 
     step3.classList.add("hidden");
     step4.classList.remove("hidden");
@@ -115,6 +156,12 @@ document.getElementById("customFood").addEventListener("input", () => {
 });
 
 document.getElementById("customBtn").onclick = async () => {
+    if (!validateDateTime()) {
+        step4.classList.add("hidden");
+        step3.classList.remove("hidden");
+        timeInput.reportValidity();
+        return;
+    }
     const customValue = document.getElementById("customFood").value.trim();
     const comment = document.getElementById("comment").value.trim();
 
