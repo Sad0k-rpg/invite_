@@ -83,19 +83,23 @@ document.getElementById("dateBtn").onclick = () => {
 };
 
 document.querySelectorAll(".food").forEach(btn => {
+    btn.setAttribute("aria-pressed", "false");
     btn.addEventListener("click", () => {
         if (btn.classList.contains("selected")) {
             btn.classList.remove("selected");
+            btn.setAttribute("aria-pressed", "false");
             selectedOption = "";
             return;
         }
 
         document.querySelectorAll(".food").forEach(item => {
             item.classList.remove("selected");
+            item.setAttribute("aria-pressed", "false");
         });
 
         btn.classList.add("selected");
-        selectedOption = btn.innerText;
+        btn.setAttribute("aria-pressed", "true");
+        selectedOption = btn.dataset.option || btn.innerText;
 
         document.getElementById("customFood").value = "";
     });
@@ -104,6 +108,7 @@ document.querySelectorAll(".food").forEach(btn => {
 document.getElementById("customFood").addEventListener("input", () => {
     document.querySelectorAll(".food").forEach(item => {
         item.classList.remove("selected");
+        item.setAttribute("aria-pressed", "false");
     });
 
     selectedOption = document.getElementById("customFood").value.trim();

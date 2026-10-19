@@ -218,3 +218,57 @@ textarea{
     }
 }
 
+
+.venue-option{
+    min-width:0;
+    padding:16px;
+    background:#fff5f9;
+    border:1px solid #ffdce8;
+    border-radius:24px;
+}
+
+.venue-choice{
+    padding:16px;
+    min-height:68px;
+    border-radius:18px;
+    font-size:24px;
+    overflow-wrap:anywhere;
+}
+
+.venue-address{
+    margin:14px 0 6px;
+    font-size:16px;
+    line-height:1.5;
+    color:#555;
+    overflow-wrap:anywhere;
+}
+
+.venue-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:4px 16px;
+}
+
+.venue-links a{
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
+    padding:8px 0;
+    color:#9b2356;
+    font-size:16px;
+    text-underline-offset:3px;
+}
+
+.venue-links a:focus-visible,
+.venue-choice:focus-visible{
+    outline:3px solid #9b2356;
+    outline-offset:4px;
+}
+
+@media(max-width:768px){
+    .venue-choice{
+        min-height:56px;
+        font-size:20px;
+    }
+}
