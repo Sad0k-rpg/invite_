@@ -9,7 +9,7 @@
     <meta property="og:description" content="Wanna go on an adventure?">
     <meta property="og:type" content="website">
     <meta name="twitter:title" content="Invitation">
-    <link rel="stylesheet" href="style.css?v=20261020-bars">
+    <link rel="stylesheet" href="style.css?v=20261020-availability">
 </head>
 <body>
 
@@ -35,7 +35,8 @@
         <h1>📅 When are you free?</h1>
 
         <input type="date" id="date" aria-label="Date">
-        <input type="time" id="time" aria-label="Time">
+        <input type="time" id="time" aria-label="Time" aria-describedby="timeHint">
+        <p id="timeHint" aria-live="polite" style="font-size:16px;line-height:1.5;color:#555">Choose a date to see available times.</p>
 
         <button id="dateBtn">Continue ➜</button>
     </div>
@@ -44,12 +45,6 @@
         <h1>✨ What should we do?</h1>
 
         <div class="food-grid">
-            <button class="food">🍕 Pizza</button>
-            <button class="food">🍣 Sushi</button>
-            <button class="food">🍔 Burger</button>
-            <button class="food">☕ Coffee</button>
-            <button class="food">🎬 Movie</button>
-            <button class="food">🚶 Walk</button>
             <div class="venue-option">
                 <button class="food venue-choice" data-option="LoggerHead" aria-describedby="venue-address-1">🍸 LoggerHead</button>
                 <p class="venue-address" id="venue-address-1">бульвар Тараса Шевченка, 1</p>
@@ -74,6 +69,12 @@
                     <a href="https://www.google.com/maps/place/F.U.L.L.+Bar/@50.4379348,30.5287275,20.25z/data=!4m15!1m8!3m7!1s0x40d4cf00fe576707:0x6c85a6739797af14!2z0LLRg9C70LjRhtGPINCc0LXRh9C90LjQutC-0LLQsCwgM9CQLCDQmtC40ZfQsiwgMDIwMDA!3b1!8m2!3d50.4378756!4d30.5287231!16s%2Fg%2F11c5cgl_r_!3m5!1s0x40d4cf01ce3fc855:0x2fa59ab494572101!8m2!3d50.4379439!4d30.5285731!16s%2Fg%2F11j3bb9z06?entry=ttu&amp;g_ep=EgoyMDI2MTAxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="FULL BAR Google Maps">Google Maps ↗</a>
                 </div>
             </div>
+            <button class="food">🍕 Pizza</button>
+            <button class="food">🍣 Sushi</button>
+            <button class="food">🍔 Burger</button>
+            <button class="food">☕ Coffee</button>
+            <button class="food">🎬 Movie</button>
+            <button class="food">🚶 Walk</button>
         </div>
 
         <input
@@ -96,7 +97,7 @@
 
 </div>
 
-<script src="script.js?v=20261020-bars"></script>
+<script src="script.js?v=20261020-availability"></script>
 
 </body>
 </html>
