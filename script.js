@@ -8,19 +8,6 @@ const noBtn = document.getElementById("noBtn");
 
 function moveNoButton() {
     const card = document.getElementById("step1");
-    const cardRect = card.getBoundingClientRect();
-    const btnRect = noBtn.getBoundingClientRect();
-
-    const maxX = cardRect.width - btnRect.width - 40;
-    const maxY = cardRect.height - btnRect.height - 40;
-
-    const x = Math.floor(Math.random() * Math.max(maxX, 1));
-    const y = Math.floor(Math.random() * Math.max(maxY, 1));
-
-    noBtn.style.position = "absolute";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-
     noAttempts++;
 
     if (noAttempts === 10) {
@@ -34,6 +21,17 @@ function moveNoButton() {
     if (noAttempts === 40) {
         noBtn.innerText = "Just press Yes ❤️";
     }
+
+    // Use the card as the positioning parent and measure the updated label.
+    // Otherwise mobile positions can extend past the card's right edge.
+    if (noBtn.parentElement !== card) card.appendChild(noBtn);
+    const inset = 16;
+    const maxX = Math.max(inset, card.clientWidth - noBtn.offsetWidth - inset);
+    const maxY = Math.max(inset, card.clientHeight - noBtn.offsetHeight - inset);
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.floor(inset + Math.random() * (maxX - inset)) + "px";
+    noBtn.style.top = Math.floor(inset + Math.random() * (maxY - inset)) + "px";
 }
 
 noBtn.addEventListener("mouseover", moveNoButton);
@@ -145,3 +143,4 @@ document.getElementById("customBtn").onclick = async () => {
     step4.classList.add("hidden");
     step5.classList.remove("hidden");
 };
+
