@@ -82,21 +82,25 @@ function isWeekday(dateValue) {
 }
 
 function updateTimeAvailability() {
+    const hasDate = Boolean(dateInput.value);
     const weekday = isWeekday(dateInput.value);
-    if (weekday) {
-        timeInput.min = "20:00";
+    const earliestTime = weekday ? "20:00" : "17:00";
+    if (hasDate) {
+        timeInput.min = earliestTime;
         timeInput.max = "22:00";
     } else {
         timeInput.removeAttribute("min");
         timeInput.removeAttribute("max");
     }
-    timeHint.textContent = !dateInput.value
+    timeHint.textContent = !hasDate
         ? "Choose a date to see available times."
         : weekday ? "Monday to Friday: 20:00 to 22:00."
-        : "Weekend: choose any time.";
+        : "Saturday and Sunday: 17:00 to 22:00.";
     timeInput.setCustomValidity(
-        weekday && timeInput.value && (timeInput.value < "20:00" || timeInput.value > "22:00")
-            ? "On weekdays, please choose a time from 20:00 to 22:00."
+        hasDate && timeInput.value && (timeInput.value < earliestTime || timeInput.value > "22:00")
+            ? weekday
+                ? "On weekdays, please choose a time from 20:00 to 22:00."
+                : "On weekends, please choose a time from 17:00 to 22:00."
             : ""
     );
 }
