@@ -331,10 +331,25 @@ textarea{
     font-size:15px;
 }
 .venue-note{
-    margin:0 0 10px;
+    display:flex;
+    align-items:flex-start;
+    align-self:flex-start;
+    gap:7px;
+    max-width:100%;
+    margin:0 0 14px;
+    padding:8px 11px;
+    border-radius:12px;
+    border:1px solid #f1d7e3;
+    background:#faedf3;
+    color:#73445a;
     font-size:13px;
     line-height:1.5;
-    color:#89546a;
+    overflow-wrap:anywhere;
+}
+.venue-note-icon{
+    flex:none;
+    color:#b2517e;
+    padding-top:1px;
 }
 .venue-links{
     margin-top:auto;
@@ -387,4 +402,41 @@ textarea{
     .venue-option{padding:14px;border-radius:20px;}
     .venue-choice{font-size:20px;min-height:54px;}
     .venue-section h2{font-size:20px;}
+}
+
+.custom-option{
+    padding:20px;
+    border:1px dashed #dba3bd;
+    border-radius:20px;
+    background:#fff8fb;
+}
+.custom-option:focus-within,
+.custom-option:has(input:not(:placeholder-shown)){
+    border-style:solid;
+    border-color:#ff4f93;
+    background:#fff2f8;
+}
+.custom-option h2{
+    margin-bottom:12px;
+}
+.custom-option label{
+    display:block;
+    color:#725b65;
+    font-size:15px;
+    line-height:1.5;
+}
+#customFood{
+    margin:12px 0 0;
+    background:#fff;
+    border-color:#ead2dd;
+    font-size:18px;
+}
+#customFood:focus-visible{
+    outline:2px solid #ff4f93;
+    outline-offset:2px;
+}
+@media(max-width:768px){
+    .custom-option{padding:16px;}
+    .custom-option label{font-size:14px;}
+    #customFood{font-size:16px;}
 }

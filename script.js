@@ -127,6 +127,8 @@ document.getElementById("dateBtn").onclick = () => {
     step4.classList.remove("hidden");
 };
 
+const customFoodInput = document.getElementById("customFood");
+
 document.querySelectorAll(".food").forEach(btn => {
     btn.setAttribute("aria-pressed", "false");
     btn.addEventListener("click", () => {
@@ -145,8 +147,17 @@ document.querySelectorAll(".food").forEach(btn => {
         btn.classList.add("selected");
         btn.setAttribute("aria-pressed", "true");
         selectedOption = btn.dataset.option || btn.innerText;
+        if (customFoodInput) customFoodInput.value = "";
 
     });
+});
+
+customFoodInput?.addEventListener("input", () => {
+    document.querySelectorAll(".food").forEach(btn => {
+        btn.classList.remove("selected");
+        btn.setAttribute("aria-pressed", "false");
+    });
+    selectedOption = customFoodInput.value.trim();
 });
 
 document.getElementById("customBtn").onclick = async () => {
@@ -158,8 +169,9 @@ document.getElementById("customBtn").onclick = async () => {
     }
     const comment = document.getElementById("comment").value.trim();
 
-    if (!selectedOption) {
-        alert("Please choose a place");
+    const chosenOption = customFoodInput?.value.trim() || selectedOption;
+    if (!chosenOption) {
+        alert("Please choose a place or suggest your own idea");
         return;
     }
 
@@ -173,7 +185,7 @@ document.getElementById("customBtn").onclick = async () => {
             body: JSON.stringify({
                 date,
                 time,
-                food: selectedOption,
+                food: chosenOption,
                 comment
             })
         });
